@@ -9,13 +9,12 @@ const eqArrays = function(first, second) {
   if (first.length == second.length) {
     for (let i = 0; i < first.length; i++) {
       if (first[i] !== second[i]) {
+        console.log("u" + first[i] + "o" + second[i]);
         return false;
-      } else {
-        return true;
       }
-    } 
+    } return true;
   } else {
-    return false ;
+      console.log("Sheeesh")
+      return false ;
   }
 };
-assertEqual(eqArrays([1, 2, 3], [1, 2, 3]), true);
