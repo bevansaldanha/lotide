@@ -21,12 +21,10 @@ const eqArrays = function(first, second) {
 const eqObjects = function(object1, object2) {
   if (Object.keys(object1).length === Object.keys(object2).length) {
     for (let keys in object1) {
-      if (Array.isArray(object1[keys])) {
-        if (!eqArrays(object1[keys],object2[keys])) {
-          return false;
-        }
+      if (object1[keys] instanceof Object) {
+        return eqObjects(object1[keys],object2[keys]);
       }
-      else if (object1[keys] !== object2[keys]) {
+      if (object1[keys] !== object2[keys]) {
         return false;
       }
     } return true;
@@ -36,11 +34,11 @@ const eqObjects = function(object1, object2) {
 const shirtObject = { color: "red", size: "medium" };
 const anotherShirtObject= { size: "medium", color: "red" };
 eqObjects(shirtObject , anotherShirtObject); // => true
-// assertEqual(eqObjects(shirtObject , anotherShirtObject), true);
+assertEqual(eqObjects(shirtObject , anotherShirtObject), true);
 
 const longSleeveShirtObject= { size: "medium", color: "red", sleeveLength: "long" };
 eqObjects(shirtObject , longSleeveShirtObject); // => false
-// assertEqual(eqObjects(shirtObject , longSleeveShirtObject), false);
+assertEqual(eqObjects(shirtObject , longSleeveShirtObject), false);
 
 
 const multiColorShirtObject = { colors: ["red", "blue"], size: "medium" };
@@ -52,3 +50,21 @@ assertEqual(eqObjects(multiColorShirtObject , anotherMultiColorShirtObject), tru
 const longSleeveMultiColorShirtObject= { size: "medium", colors: ["red", "blue"], sleeveLength: "long" };
 eqObjects(multiColorShirtObject  , longSleeveMultiColorShirtObject); // => false
 assertEqual(eqObjects(multiColorShirtObject , longSleeveMultiColorShirtObject), false);
+
+console.log(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }));
+
+console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }));
+
+console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 }));
+
+console.log(eqObjects({ a: { x: {bev:"an"} }, b: 2 }, { a: { x: {bev:"an"} }, b: 2 }));
+
+
+
+
+// if (object1[keys]) {
+//   if (!eqArrays(object1[keys],object2[keys])) {
+//     return false;
+//   }
+// }
+// else
