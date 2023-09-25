@@ -1,18 +1,11 @@
-const eqArrays = function(first, second) {
-  if (first.length == second.length) {
-    for (let i = 0; i < first.length; i++) {
-      if (first[i] !== second[i]) {
-        return false;
-      }
-    } return true;
-  } else {
-      return false ;
-  }
-};
+const eqArrays = require("./eqArrays");
 const assertArraysEqual = function(firstArray, secondArray) {
-  if (eqArrays(firstArray,secondArray)) {
+  if (eqArrays(firstArray, secondArray)) {
     console.log(`✅✅✅  Assertion Passed: ${firstArray} ===  ${secondArray}`);
   } else {
     console.log(`🛑🛑🛑 Assertion Failed: ${firstArray} !==  ${secondArray}`);
   }
 };
+
+assertArraysEqual([1, 2, 3], [1, 2, 3]);
+assertArraysEqual([1, 2, 172], [1, 2, 3]);
