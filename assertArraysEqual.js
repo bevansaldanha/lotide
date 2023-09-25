@@ -7,5 +7,4 @@ const assertArraysEqual = function(firstArray, secondArray) {
   }
 };
 
-assertArraysEqual([1, 2, 3], [1, 2, 3]);
-assertArraysEqual([1, 2, 172], [1, 2, 3]);
+
